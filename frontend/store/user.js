@@ -1,10 +1,12 @@
 import { ethers } from 'ethers'
-import myCount from '../utils/myCount.json'
+import Web3 from 'web3'
+import abi from '../utils/abi.json'
 
 export const state = () => ({
   account: '',
   error: '',
-  contractAddress: '0xB3D7161f982aE9247DA3f1CB70A943fA4593CA5B'
+  // contractAddress: '0xd9145CCE52D386f254917e481eB44e9943F39138'
+  contractAddress: '0xf8e81D47203A594245E36C48e151709F0C19fBe8'
 })
 
 export const mutations = {
@@ -18,10 +20,15 @@ export const mutations = {
 }
 
 export const actions = {
-  async getCount({ state, commit, dispatch }) {
+  async previousOwner({ state, commit, dispatch }) {
     const connectedContract = await dispatch("getContract");
-    console.log(await connectedContract.get())
+    console.log(await connectedContract)
+    // console.log(await connectedContract.setRegulator())
+    // console.log(await connectedContract.setRegulator(0xd9145CCE52D386f254917e481eB44e9943F39138));
+
+
   },
+  // 0xd9145CCE52D386f254917e481eB44e9943F39138
 
   async inc({ state, commit, dispatch }) {
     const connectedContract = await dispatch("getContract");
@@ -80,15 +87,29 @@ export const actions = {
   },
 
   async getContract({ state }) {
+
+//       const RPC_ENDPOINT = 'https://ropsten.infura.io/v3/e3c79efae42947f98972c00cad1bb3d5'
+//     let web3 = new Web3(new Web3.providers.HttpProvider(RPC_ENDPOINT));
+//       let address = '0xf8e81D47203A594245E36C48e151709F0C19fBe8'
+//
+//     web3.eth.defaultAccount = web3.eth.accounts[0]
+//
+//     var SimpleStorageContract = web3.eth.contract(abi.abi);
+//
+//     var simpleStorageContractInstance = SimpleStorageContract.at(address);
+// return console.log(simpleStorageContractInstance.checkRegulator())
+
+    // 02ed88b5c5cf0a2a99bc20cbe49b1381abf646271f14129b90aeed9b07df7c29
     try {
       const { ethereum } = window;
       const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-
+      // const provider = new ethers.providers.JsonRpcProvider();
+      const signer = await provider.getSigner();
+// return console.log(await signer.provider.getCode('hjkkhk'))
        //  connectedContract
        return new ethers.Contract(
         state.contractAddress,
-        myCount.abi,
+        abi.abi,
         signer
       );
 

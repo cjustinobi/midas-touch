@@ -1,7 +1,7 @@
 <template>
   <div>
     {{account}}
-    <button @click.prevent="$store.dispatch('user/getCount')">Get count</button>
+    <button @click.prevent="$store.dispatch('user/previousOwner')">Get Previous Owner</button>
     <button @click.prevent="$store.dispatch('user/dec')">DEc</button>
     <button @click.prevent="$store.dispatch('user/inc')">Inc</button>
   </div>
