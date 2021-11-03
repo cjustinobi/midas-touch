@@ -5,7 +5,6 @@ import abi from '../utils/abi.json'
 export const state = () => ({
   account: '',
   error: '',
-  // contractAddress: '0xd9145CCE52D386f254917e481eB44e9943F39138'
   contractAddress: '0xf8e81D47203A594245E36C48e151709F0C19fBe8'
 })
 
@@ -20,15 +19,14 @@ export const mutations = {
 }
 
 export const actions = {
-  async previousOwner({ state, commit, dispatch }) {
+  async testContract({ state, commit, dispatch }) {
     const connectedContract = await dispatch("getContract");
-    console.log(await connectedContract)
-    // console.log(await connectedContract.setRegulator())
-    // console.log(await connectedContract.setRegulator(0xd9145CCE52D386f254917e481eB44e9943F39138));
-
+    const res = await connectedContract
+    console.log(await res.setRegulator('0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'))
+    // console.log(await res.checkRegulator())
 
   },
-  // 0xd9145CCE52D386f254917e481eB44e9943F39138
+
 
   async inc({ state, commit, dispatch }) {
     const connectedContract = await dispatch("getContract");
@@ -88,30 +86,24 @@ export const actions = {
 
   async getContract({ state }) {
 
-//       const RPC_ENDPOINT = 'https://ropsten.infura.io/v3/e3c79efae42947f98972c00cad1bb3d5'
-//     let web3 = new Web3(new Web3.providers.HttpProvider(RPC_ENDPOINT));
-//       let address = '0xf8e81D47203A594245E36C48e151709F0C19fBe8'
-//
-//     web3.eth.defaultAccount = web3.eth.accounts[0]
-//
-//     var SimpleStorageContract = web3.eth.contract(abi.abi);
-//
-//     var simpleStorageContractInstance = SimpleStorageContract.at(address);
-// return console.log(simpleStorageContractInstance.checkRegulator())
-
-    // 02ed88b5c5cf0a2a99bc20cbe49b1381abf646271f14129b90aeed9b07df7c29
     try {
-      const { ethereum } = window;
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      // const provider = new ethers.providers.JsonRpcProvider();
+
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = await provider.getSigner();
-// return console.log(await signer.provider.getCode('hjkkhk'))
+      console.log(signer)
        //  connectedContract
-       return new ethers.Contract(
-        state.contractAddress,
-        abi.abi,
-        signer
-      );
+
+
+      try {
+        return new ethers.Contract(state.contractAddress, abi.abi, signer)
+        // const data = await contract.checkRegulator()
+
+      } catch (err) {
+        console.log("Error: ", err)
+      }
+
+
+       // return new ethers.Contract(state.contractAddress, abi.abi, signer);
 
     } catch (error) {
       console.log(error);
@@ -125,3 +117,28 @@ export const getters = {
   account: state => state.account,
   error: state => state.error,
 }
+
+
+//
+// {hash: "0x85aec4a2e5480d3989d50b23959f75d5e82c1bb5d25eb683ed1ab7e8a61da22e", type: 2, accessList: null, blockHash: null, blockNumber: null, …}
+// accessList: null
+// blockHash: null
+// blockNumber: null
+// chainId: 0
+// confirmations: 0
+// creates: null
+// data: "0xcde0a4f800000000000000000000000000000000000c2e074ec69a0dfb2997ba6c7d2e1e"
+// from: "0xfCdcB824747B3b8e4058E90a59468eD0ef538Ae9"
+// gasLimit: BigNumber {_hex: "0x537c", _isBigNumber: true}
+// gasPrice: BigNumber {_hex: "0x59682f14", _isBigNumber: true}
+// hash: "0x85aec4a2e5480d3989d50b23959f75d5e82c1bb5d25eb683ed1ab7e8a61da22e"
+// maxFeePerGas: BigNumber {_hex: "0x59682f14", _isBigNumber: true}
+// maxPriorityFeePerGas: BigNumber {_hex: "0x59682f00", _isBigNumber: true}
+// nonce: 57
+// r: "0x50f58b90b4048e3a1cd9523d7204e0539b35af2690f00ff3f5dbaf0c932421f7"
+// s: "0x64123a82eacc975e046f820fc8b272d14727377ec0a7c831526659d41c0713a1"
+// to: "0xf8e81D47203A594245E36C48e151709F0C19fBe8"
+// transactionIndex: null
+// type: 2
+// v: 0
+
