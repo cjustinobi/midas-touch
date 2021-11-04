@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <button @click.prevent="$store.dispatch('user/testContract')">Test Contract</button>
+    <a-button type="primary" @click.prevent="$store.dispatch('user/testContract')">Test Contract</a-button>
   </div>
 </template>
 
