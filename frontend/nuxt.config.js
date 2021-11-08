@@ -16,12 +16,24 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'vendor/jquery/jquery.min.js' },
+      { src: 'vendor/bootstrap/js/bootstrap.bundle.min.js' },
+      { src: 'vendor/jquery.easing/jquery.easing.min.js' },
+      { src: 'vendor/isotope-layout/isotope.pkgd.min.js' },
+      { src: 'vendor/venobox/venobox.min.js' },
+      { src: 'vendor/aos/aos.js' },
+      { src: 'vendor/js/main.js' },
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'ant-design-vue/dist/antd.css'
+    'ant-design-vue/dist/antd.css',
+    'assets/css/bootstrap.css',
+    'assets/css/all.css',
+    'assets/css/style.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="wrapper">
     <div class="desc">
       <span>Use</span> <br> <span>the</span> <br> <span>money</span> <br> <span>of</span> <br> <span>the</span> <br> <span>future</span> <br> <span>now</span>
     </div>
@@ -11,7 +11,7 @@
         <h1>INVEST</h1>
       </div>
       <div class="play">
-        <h1>PLAY</h1>
+        <h1>CREATE</h1>
       </div>
     </div>
 
@@ -51,7 +51,7 @@
 </script>
 
 <style scoped>
-  .container {
+  .wrapper {
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;

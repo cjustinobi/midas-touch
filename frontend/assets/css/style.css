@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  letter-spacing: normal;
+  font-family: 'Poppins', sans-serif;
+}
+
+.app-btn, .app-btn:hover {
+  background: #F92D00;
+  border-color: #F92D00;
+}
+
+.app-color {
+  color: #F92D00;
+}
+
+
+.body {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.ant-page-header {
+  margin-bottom: 60px !important;
+  border: 1px solid rgb(235, 237, 240)
+}
+.display-block {
+  display: block;
+}
+.muted {
+  color: grey;
+}
+
+.app-padding {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+@media only screen  and (max-width: 767px) {
+  .app-padding {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
